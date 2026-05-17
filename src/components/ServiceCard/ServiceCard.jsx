@@ -7,6 +7,8 @@ const ServiceCard = ({
   icon, 
   features = [], 
   tags = [], 
+  links = [],
+  solidTags = false,
   variant = 'default',
   number,
   accent = 'primary',
@@ -77,9 +79,19 @@ const ServiceCard = ({
       )}
       
       {tags.length > 0 && (
-        <div className="service-card__tags">
+        <div className={`service-card__tags ${solidTags ? 'service-card__tags--solid' : ''}`}>
           {tags.map((tag, index) => (
             <span key={index} className="service-card__tag">{tag}</span>
+          ))}
+        </div>
+      )}
+      
+      {links.length > 0 && (
+        <div className="service-card__links">
+          {links.map((link, index) => (
+            <a key={index} href="#" className="service-card__link">
+              {link}
+            </a>
           ))}
         </div>
       )}
