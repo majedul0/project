@@ -1,0 +1,217 @@
+.services-section {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  overflow-x: hidden;
+}
+
+.services-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .services-section__header {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+.services-section__header-left {
+  flex: 1;
+}
+
+.services-section__title {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 2.25rem;
+  color: var(--on-surface);
+  margin: 0 0 0.5rem 0;
+}
+
+.services-section__subtitle {
+  font-family: 'Space Grotesk', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+  font-style: italic;
+  margin: 0;
+}
+
+.services-section__header-divider {
+  height: 1px;
+  flex-grow: 1;
+  background: var(--outline-variant);
+  margin: 0 2rem;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .services-section__header-divider {
+    display: block;
+  }
+}
+
+.services-section__header-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.services-section__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+.services-section__dot--primary {
+  background: var(--primary);
+}
+
+.services-section__dot--secondary {
+  background: var(--secondary);
+}
+
+.services-section__dot--tertiary {
+  background: var(--tertiary);
+}
+
+.services-section__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .services-section__grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+.services-section__optimization-card {
+  grid-column: span 1;
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--outline-variant);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .services-section__optimization-card {
+    grid-column: span 12;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.services-section__optimization-content {
+  flex: 1;
+}
+
+.services-section__optimization-title {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--on-surface);
+  margin: 0 0 1.5rem 0;
+}
+
+.services-section__optimization-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .services-section__optimization-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    row-gap: 1rem;
+  }
+}
+
+.services-section__optimization-subtitle {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.5rem 0;
+}
+
+.services-section__optimization-subtitle--primary {
+  color: var(--primary);
+}
+
+.services-section__optimization-subtitle--secondary {
+  color: var(--secondary);
+}
+
+.services-section__optimization-text {
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.services-section__optimization-icons {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.services-section__optimization-icon {
+  width: 4rem;
+  height: 4rem;
+  background: var(--surface-container-low);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.services-section__optimization-icon--primary {
+  border: 1px solid rgba(255, 45, 120, 0.2);
+}
+
+.services-section__optimization-icon--primary .material-symbols-outlined {
+  color: var(--primary);
+  opacity: 0.5;
+}
+
+.services-section__optimization-icon--secondary {
+  border: 1px solid rgba(0, 255, 204, 0.2);
+}
+
+.services-section__optimization-icon--secondary .material-symbols-outlined {
+  color: var(--secondary);
+  opacity: 0.5;
+}
+
+.services-section__optimization-icon--tertiary {
+  border: 1px solid rgba(255, 224, 74, 0.2);
+}
+
+.services-section__optimization-icon--tertiary .material-symbols-outlined {
+  color: var(--tertiary);
+  opacity: 0.5;
+}
+
+.services-section__optimization-icon--surface {
+  border: 1px solid rgba(232, 224, 240, 0.2);
+}
+
+.services-section__optimization-icon--surface .material-symbols-outlined {
+  color: var(--on-surface);
+  opacity: 0.5;
+}

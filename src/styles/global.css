@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Inter:wght@300;400;600&family=Space+Grotesk:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+:root {
+  /* Neon Tokyo Color Palette */
+  --primary: #ff2d78;
+  --secondary: #00ffcc;
+  --tertiary: #ffe04a;
+  --background: #0a0a12;
+  --surface: #0f0f1a;
+  --surface-dim: #0f0f1a;
+  --surface-bright: #1a1a2e;
+  --surface-container: #141422;
+  --surface-container-low: #111118;
+  --surface-container-lowest: #0a0a12;
+  --surface-container-high: #1e1e30;
+  --surface-container-highest: #28283e;
+  
+  /* Text Colors */
+  --on-background: #e8e0f0;
+  --on-surface: #e8e0f0;
+  --on-surface-variant: #a098b0;
+  --on-primary: #1a0010;
+  --on-secondary: #001a1a;
+  --on-tertiary: #1a1000;
+  --on-primary-container: #ffe0ec;
+  --on-secondary-container: #c0fff4;
+  --on-tertiary-container: #fff0c0;
+  
+  /* Border Colors */
+  --outline: #5a5068;
+  --outline-variant: #302840;
+  
+  /* Error Colors */
+  --error: #ff4444;
+  --error-container: #3d0f0f;
+  --on-error: #1a0000;
+  --on-error-container: #ffa0a0;
+  
+  /* Border Radius */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-full: 0.75rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  background-image: 
+    linear-gradient(rgba(255, 45, 120, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 45, 120, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--on-surface);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Typography */
+.font-headline {
+  font-family: 'Sora', sans-serif;
+}
+
+.font-display {
+  font-family: 'Sora', sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-label {
+  font-family: 'Space Grotesk', monospace;
+}
+
+/* Neon Glow Effects */
+.neon-text-primary {
+  text-shadow: 0 0 8px var(--primary);
+}
+
+.neon-text-secondary {
+  text-shadow: 0 0 8px var(--secondary);
+}
+
+.neon-text-tertiary {
+  text-shadow: 0 0 8px var(--tertiary);
+}
+
+.neon-border-primary {
+  border: 1px solid rgba(255, 45, 120, 0.3);
+  box-shadow: inset 0 0 12px rgba(255, 45, 120, 0.1);
+}
+
+.neon-border-secondary {
+  border: 1px solid rgba(0, 255, 204, 0.3);
+  box-shadow: inset 0 0 12px rgba(0, 255, 204, 0.1);
+}
+
+.neon-border-tertiary {
+  border: 1px solid rgba(255, 224, 74, 0.3);
+  box-shadow: inset 0 0 12px rgba(255, 224, 74, 0.1);
+}
+
+/* Glass Panel Effect */
+.glass-panel {
+  background: rgba(20, 20, 34, 0.7);
+  backdrop-filter: blur(12px);
+}
+
+/* Terminal Glow */
+.terminal-glow {
+  box-shadow: inset 0 0 20px rgba(255, 45, 120, 0.05);
+}
+
+/* Scanline Effect */
+.scanline {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Material Icons */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-container-low);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--outline);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

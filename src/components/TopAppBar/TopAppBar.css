@@ -1,0 +1,110 @@
+.top-app-bar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(15, 15, 26, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 45, 120, 0.3);
+  box-shadow: 0 0 15px rgba(255, 45, 120, 0.2);
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+
+.top-app-bar__left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.top-app-bar__menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--primary);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.top-app-bar__menu-btn:hover {
+  color: var(--secondary);
+  text-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
+}
+
+.top-app-bar__menu-btn:active {
+  transform: scale(0.95);
+}
+
+.top-app-bar__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.top-app-bar__logo-img {
+  height: 2.5rem;
+  width: 2.5rem;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.top-app-bar__logo-text {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--primary);
+  text-shadow: 0 0 8px rgba(255, 45, 120, 0.8);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.top-app-bar__nav {
+  display: none;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .top-app-bar__nav {
+    display: flex;
+  }
+}
+
+.top-app-bar__nav-link {
+  font-family: 'Space Grotesk', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: var(--on-surface-variant);
+  transition: all 0.3s ease;
+}
+
+.top-app-bar__nav-link--active {
+  color: var(--primary);
+  text-shadow: 0 0 5px currentColor;
+}
+
+.top-app-bar__nav-link:hover {
+  color: var(--secondary);
+  text-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
+}
+
+.top-app-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.top-app-bar__icon {
+  color: var(--primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.top-app-bar__icon:active {
+  transform: scale(0.95);
+}

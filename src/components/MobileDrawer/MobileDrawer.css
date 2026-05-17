@@ -1,0 +1,96 @@
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 20rem;
+  border-top-right-radius: var(--radius-full);
+  background: var(--surface-container-highest);
+  border-right: 1px solid rgba(255, 45, 120, 0.4);
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.mobile-drawer__header {
+  padding: 2rem;
+  border-bottom: 1px solid var(--outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-drawer__title {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mobile-drawer__close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--on-surface-variant);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s ease;
+}
+
+.mobile-drawer__close-btn:hover {
+  color: var(--primary);
+}
+
+.mobile-drawer__nav {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.mobile-drawer__nav-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  font-family: 'Space Grotesk', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: var(--on-surface-variant);
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer__nav-item:hover {
+  background: rgba(160, 152, 176, 0.1);
+  color: var(--secondary);
+}
+
+.mobile-drawer__nav-item--active {
+  background: rgba(255, 45, 120, 0.2);
+  color: var(--primary);
+  border-left: 4px solid var(--primary);
+}
+
+.mobile-drawer__status {
+  padding: 1.5rem;
+}
+
+.mobile-drawer__status-box {
+  padding: 1rem;
+  background: var(--surface-container-low);
+  border: 1px solid rgba(255, 45, 120, 0.2);
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 45, 120, 0.6);
+  line-height: 1.5;
+}

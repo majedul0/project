@@ -1,0 +1,92 @@
+.cta-section {
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section__background {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 45, 120, 0.05);
+  transform: skewY(-3deg) translateY(3rem);
+  z-index: -1;
+}
+
+.cta-section__container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.cta-section__title {
+  font-family: 'Sora', sans-serif;
+  font-weight: 900;
+  font-size: 2.25rem;
+  color: var(--on-surface);
+  margin: 0 0 2rem 0;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .cta-section__title {
+    font-size: 3.75rem;
+  }
+}
+
+.cta-section__title-accent {
+  color: var(--primary);
+  font-style: italic;
+}
+
+.cta-section__description {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  color: var(--on-surface-variant);
+  margin: 0 0 3rem 0;
+}
+
+.cta-section__button-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cta-section__button-glow {
+  position: absolute;
+  inset: 0;
+  background: var(--primary);
+  filter: blur(3rem);
+  opacity: 0.3;
+  border-radius: 9999px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.cta-section__button {
+  position: relative;
+  z-index: 10;
+  display: block;
+  background: var(--on-surface);
+  color: var(--inverse-on-surface);
+  padding: 1.25rem 3rem;
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.cta-section__button:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+}

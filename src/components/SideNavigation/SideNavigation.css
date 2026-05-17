@@ -1,0 +1,103 @@
+.side-navigation {
+  position: fixed;
+  inset: 0;
+  left: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 4rem;
+  background: var(--surface-container-highest);
+  border-right: 1px solid rgba(255, 45, 120, 0.4);
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+  padding: 2rem 0;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .side-navigation {
+    width: 5rem;
+  }
+}
+
+.side-navigation__logo {
+  margin-bottom: 1rem;
+}
+
+.side-navigation__logo-img {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 15px rgba(255, 45, 120, 0.5);
+}
+
+.side-navigation__links {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1;
+}
+
+.side-navigation__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+  cursor: pointer;
+}
+
+.side-navigation__link:active {
+  transform: translateX(0.25rem);
+}
+
+.side-navigation__link .material-symbols-outlined {
+  font-size: 1.5rem;
+}
+
+.side-navigation__link--active .material-symbols-outlined {
+  color: var(--primary);
+  text-shadow: 0 0 5px currentColor;
+}
+
+.side-navigation__link:not(.side-navigation__link--active) .material-symbols-outlined {
+  color: var(--on-surface-variant);
+  transition: color 0.2s ease;
+}
+
+.side-navigation__link:not(.side-navigation__link--active):hover .material-symbols-outlined {
+  color: var(--secondary);
+}
+
+.side-navigation__link span:last-child {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.side-navigation__link--active span:last-child {
+  color: var(--primary);
+}
+
+.side-navigation__link:not(.side-navigation__link--active) span:last-child {
+  color: var(--on-surface-variant);
+  transition: color 0.2s ease;
+}
+
+.side-navigation__link:not(.side-navigation__link--active):hover span:last-child {
+  color: var(--secondary);
+}
+
+.side-navigation__settings {
+  margin-top: auto;
+}
+
+.side-navigation__settings-icon {
+  color: rgba(160, 152, 176, 0.2);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
