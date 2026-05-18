@@ -76,13 +76,14 @@
   z-index: 10;
   display: block;
   background: var(--on-surface);
-  color: var(--inverse-on-surface);
+  color: var(--background);
   padding: 1.25rem 3rem;
   font-family: 'Sora', sans-serif;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   transition: color 0.3s ease, background-color 0.3s ease;
 }
 
