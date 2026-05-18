@@ -83,20 +83,19 @@
 }
 
 .services-section__grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
   width: 100%;
 }
 
-@media (min-width: 768px) {
-  .services-section__grid {
-    grid-template-columns: repeat(12, 1fr);
-  }
+.services-section__grid > .service-card {
+  flex: 1 1 320px;
+  min-width: 0;
 }
 
 .services-section__optimization-card {
-  grid-column: span 1;
+  flex: 1 1 100%;
   background: var(--surface-container-highest);
   border-radius: var(--radius-lg);
   border: 1px solid var(--outline-variant);
@@ -108,7 +107,6 @@
 
 @media (min-width: 768px) {
   .services-section__optimization-card {
-    grid-column: span 12;
     flex-direction: row;
     align-items: center;
   }
