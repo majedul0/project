@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+import logoImg from '../../assets/logo/it-servicer logo bg remov.png';
 
 const Footer = ({ withSideNav = false }) => {
   return (
@@ -8,7 +9,7 @@ const Footer = ({ withSideNav = false }) => {
       <div className="footer__container">
         <div className="footer__logo-section footer__fade footer__fade--1">
           <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHVLDf3R9E9LZHA5t-YZnmvnMbapn114Sv9TFs3HnOPbFRBfxwDyEQn58Mei5jgzfkQx8G6azdnei9Vc9yJWSYS029GIC9H2vEaIBY93MNNoM5jzbgamVbfCRz0Yvw_eGpbmKoI8C0YcrheNnNE_ZUoD2XYtyQ1d60W1-JwHTAx0bauX1WRrikqPBg90StXlBExPkt7QdDETyAyjyOaVi0gkavS9-q1Yw6Lct5XOISAvO-YR6pY6XpkAlVB2_Ztcr1Tlt2sIpmVE0"
+            src={logoImg}
             alt="IT Servicer Logo"
             className="footer__logo"
           />
