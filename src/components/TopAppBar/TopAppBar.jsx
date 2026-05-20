@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './TopAppBar.css';
+import logoImg from '../../assets/logo/it-servicer logo bg remov.png';
 
 const TopAppBar = ({ onMenuClick, showNavLinks = true }) => {
   return (
@@ -10,11 +11,10 @@ const TopAppBar = ({ onMenuClick, showNavLinks = true }) => {
         </button>
         <div className="top-app-bar__logo">
           <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHVLDf3R9E9LZHA5t-YZnmvnMbapn114Sv9TFs3HnOPbFRBfxwDyEQn58Mei5jgzfkQx8G6azdnei9Vc9yJWSYS029GIC9H2vEaIBY93MNNoM5jzbgamVbfCRz0Yvw_eGpbmKoI8C0YcrheNnNE_ZUoD2XYtyQ1d60W1-JwHTAx0bauX1WRrikqPBg90StXlBExPkt7QdDETyAyjyOaVi0gkavS9-q1Yw6Lct5XOISAvO-YR6pY6XpkAlVB2_Ztcr1Tlt2sIpmVE0"
+            src={logoImg}
             alt="IT Servicer Logo"
             className="top-app-bar__logo-img"
           />
-          <span className="top-app-bar__logo-text">IT Servicer</span>
         </div>
       </div>
       
