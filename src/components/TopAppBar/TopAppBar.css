@@ -45,8 +45,8 @@
 }
 
 .top-app-bar__logo-img {
-  height: 4.5rem;
-  width: 4.5rem;
+  height: 5rem;
+  width: 5rem;
   object-fit: contain;
   border-radius: var(--radius-sm);
 }
