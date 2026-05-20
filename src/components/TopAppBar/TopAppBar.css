@@ -45,20 +45,10 @@
 }
 
 .top-app-bar__logo-img {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 3rem;
+  width: 3rem;
   object-fit: contain;
   border-radius: var(--radius-sm);
-}
-
-.top-app-bar__logo-text {
-  font-family: 'Sora', sans-serif;
-  font-weight: 800;
-  font-size: 1.5rem;
-  color: var(--primary);
-  text-shadow: 0 0 8px rgba(255, 45, 120, 0.8);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 .top-app-bar__nav {
