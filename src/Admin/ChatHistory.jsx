@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { fetchChatHistory } from '../../services/api'
-import AdminLayout from '../../components/AdminLayout/AdminLayout'
+import { fetchChatHistory } from '../services/api'
+import AdminLayout from '../components/AdminLayout/AdminLayout'
 import './ChatHistory.css'
 
 const formatDate = (value) => {
