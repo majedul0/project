@@ -2,7 +2,6 @@
   max-width: 1200px;
   margin: 28px auto;
   padding: 24px;
-  color: #0f172a;
 }
 
 .manage-header {
@@ -44,9 +43,7 @@
 
 .product-form-card,
 .product-list-card {
-  border: 1px solid #dbeafe;
   border-radius: 14px;
-  background: #ffffff;
   padding: 18px;
 }
 
