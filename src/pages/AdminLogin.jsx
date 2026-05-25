@@ -16,9 +16,10 @@
  */
 
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import './AdminLogin.css'
+import '../styles/admin-theme.css'
 
 const AdminLogin = () => {
   // State management for form inputs and UI
@@ -135,12 +136,18 @@ const AdminLogin = () => {
 
         {/* Demo credentials info */}
         <div className="demo-info">
+          <p>Demo credentials</p>
           <p>
-            <strong>Demo Credentials:</strong>
+            Username: <code>admin1971</code>
           </p>
-          <p>Username: <code>admin1971</code></p>
-          <p>Password: <code>admin1971</code></p>
+          <p>
+            Password: <code>admin1971</code>
+          </p>
         </div>
+
+        <Link to="/" className="login-back-link">
+          ← Back to website
+        </Link>
       </div>
     </div>
   )
