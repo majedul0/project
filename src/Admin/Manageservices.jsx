@@ -1,9 +1,34 @@
-import { useState } from 'react'
-import { useProducts } from '../../context/ProductContext'
-import { uploadProductImage, uploadProductMedia } from '../../services/api'
-import AdminLayout from '../../components/AdminLayout/AdminLayout'
-import './ManageProducts.css'
-import { DEFAULT_FEATURE_BADGES, getProductCategoryOptions, getProductCategoryLabel, normalizeCategoryLabel } from '../../utils/productCustomization'
+import { useState, useEffect } from 'react'
+import { fetchAllServices, createService, updateService, deleteService, uploadServiceImage } from '../services/api'
+import AdminLayout from '../components/AdminLayout/AdminLayout'
+import './Manageservices.css'
+
+const DEFAULT_FEATURE_BADGES = [
+  { icon: '✨', label: 'Premium Quality' },
+  { icon: '🚀', label: 'Fast Delivery' }
+]
+const getProductCategoryOptions = () => [
+  { value: 'web-development', label: 'Web Development' },
+  { value: 'app-development', label: 'App Development' },
+  { value: 'seo', label: 'SEO Services' },
+  { value: 'design', label: 'UI/UX Design' }
+]
+const getProductCategoryLabel = (product) => product.category || 'web-development'
+const normalizeCategoryLabel = (label) => label ? label.toLowerCase().replace(/\s+/g, '-') : 'web-development'
+
+const uploadProductImage = async (file) => {
+   const url = await uploadServiceImage(file);
+   return { imageUrl: url };
+}
+
+const uploadProductMedia = async (files) => {
+   const results = [];
+   for (let file of files) {
+       const url = await uploadServiceImage(file);
+       results.push({ type: file.type.startsWith('video') ? 'video' : 'image', url });
+   }
+   return { files: results };
+}
 
 const MAX_GALLERY_IMAGES = 5
 const VARIANT_UNIT_OPTIONS = ['ML', 'L', 'G', 'KG', 'PCS']
@@ -58,7 +83,34 @@ const createInitialForm = () => ({
 })
 
 const ManageProducts = () => {
-  const { products, createProduct, updateProduct, deleteProduct } = useProducts()
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    loadProducts()
+  }, [])
+
+  const loadProducts = async () => {
+    try {
+      const data = await fetchAllServices()
+      setProducts(data || [])
+    } catch(e) {
+      console.error(e)
+    }
+  }
+
+  const createProduct = async (payload) => {
+    await createService(payload)
+    loadProducts()
+  }
+  const updateProduct = async (id, payload) => {
+    await updateService(id, payload)
+    loadProducts()
+  }
+  const deleteProduct = async (id) => {
+    await deleteService(id)
+    loadProducts()
+  }
+
   const [formData, setFormData] = useState(createInitialForm)
   const [editingId, setEditingId] = useState(null)
   const [primaryImageFile, setPrimaryImageFile] = useState(null)
@@ -250,7 +302,7 @@ const ManageProducts = () => {
     }
 
     if (!resolvedImageUrl) {
-      alert('One primary image is mandatory for every product.')
+      alert('One primary image is mandatory for every service.')
       return
     }
 
@@ -372,7 +424,7 @@ const ManageProducts = () => {
     }
 
     if (!payload.category) {
-      alert('Please choose or create a category for this product.')
+      alert('Please choose or create a category for this service.')
       return
     }
 
@@ -391,34 +443,34 @@ const ManageProducts = () => {
   }
 
   const handleEdit = (product) => {
-    setEditingId(product.id)
+    setEditingId(service.id)
     setPrimaryImageFile(null)
     setGalleryFiles([])
     setVideoFile(null)
     setFormData({
-      name: product.name,
-      subtitle: product.subtitle,
-      category: product.category || getProductCategoryLabel(product),
-      imageUrl: product.imageUrl,
-      galleryImageUrls: Array.isArray(product.galleryImages) ? product.galleryImages.join('\n') : '',
-      videoUrl: product.videoUrl || '',
-      gifUrl: product.gifUrl || '',
-      rating: String(product.rating),
-      reviews: String(product.reviews),
-      oldPrice: String(product.oldPrice),
-      price: String(product.price),
-      discount: product.discount,
-      save: String(product.save),
-      variants: Array.isArray(product.variants) && product.variants.length > 0
-        ? product.variants.map((variant, index) => createVariantRow(variant, index))
-        : [createVariantRow({ amount: product.variantAmount || '100', unit: product.variantUnit || 'ML', price: product.price, oldPrice: product.oldPrice, save: product.save }, 0)],
-      featureBadges: Array.isArray(product.featureBadges) && product.featureBadges.length > 0
-        ? product.featureBadges.map((badge, index) => createBadgeRow(badge, index))
+      name: service.name,
+      subtitle: service.subtitle,
+      category: service.category || getProductCategoryLabel(product),
+      imageUrl: service.imageUrl,
+      galleryImageUrls: Array.isArray(service.galleryImages) ? service.galleryImages.join('\n') : '',
+      videoUrl: service.videoUrl || '',
+      gifUrl: service.gifUrl || '',
+      rating: String(service.rating),
+      reviews: String(service.reviews),
+      oldPrice: String(service.oldPrice),
+      price: String(service.price),
+      discount: service.discount,
+      save: String(service.save),
+      variants: Array.isArray(service.variants) && service.variants.length > 0
+        ? service.variants.map((variant, index) => createVariantRow(variant, index))
+        : [createVariantRow({ amount: service.variantAmount || '100', unit: service.variantUnit || 'ML', price: service.price, oldPrice: service.oldPrice, save: service.save }, 0)],
+      featureBadges: Array.isArray(service.featureBadges) && service.featureBadges.length > 0
+        ? service.featureBadges.map((badge, index) => createBadgeRow(badge, index))
         : DEFAULT_FEATURE_BADGES.map((badge, index) => createBadgeRow(badge, index)),
-      relatedProductIds: Array.isArray(product.relatedProductIds) ? product.relatedProductIds.map(String) : [],
-      faqs: Array.isArray(product.faqs) ? product.faqs.map((faq, index) => createFaqRow(faq, index)) : [],
-      descriptionMedia: Array.isArray(product.descriptionMedia) ? product.descriptionMedia.map((m, index) => createMediaRow(m, index)) : [],
-      description: product.description || '',
+      relatedProductIds: Array.isArray(service.relatedProductIds) ? service.relatedProductIds.map(String) : [],
+      faqs: Array.isArray(service.faqs) ? service.faqs.map((faq, index) => createFaqRow(faq, index)) : [],
+      descriptionMedia: Array.isArray(service.descriptionMedia) ? service.descriptionMedia.map((m, index) => createMediaRow(m, index)) : [],
+      description: service.description || '',
     })
   }
 
@@ -439,17 +491,17 @@ const ManageProducts = () => {
       <main className="manage-products-page">
         <section className="manage-header">
           <div>
-            <h1 style={{fontSize: '2rem', marginBottom: '0.5rem'}}>Manage Products</h1>
+            <h1 style={{fontSize: '2rem', marginBottom: '0.5rem'}}>Manage Services</h1>
             <p>Add new products, edit existing products, or remove items from the list.</p>
           </div>
         </section>
 
         <section className="manage-layout" aria-label="Product tools">
           <article className="product-form-card">
-            <h2>{editingId ? 'Edit Product' : 'Add Product'}</h2>
+            <h2>{editingId ? 'Edit Service' : 'Add Service'}</h2>
             <form onSubmit={handleSubmit} className="product-form-grid">
             <label>
-              Product Name
+              Service Name
               <input
                 type="text"
                 name="name"
@@ -831,10 +883,10 @@ const ManageProducts = () => {
               Related Products
               <select multiple value={formData.relatedProductIds} onChange={handleRelatedProductsChange} className="related-products-select">
                 {products
-                  .filter((product) => String(product.id) !== String(editingId))
+                  .filter((product) => String(service.id) !== String(editingId))
                   .map((product) => (
-                    <option key={product.id} value={String(product.id)}>
-                      {product.name}
+                    <option key={service.id} value={String(service.id)}>
+                      {service.name}
                     </option>
                   ))}
               </select>
@@ -842,7 +894,7 @@ const ManageProducts = () => {
 
             <div className="product-form-buttons">
               <button type="submit" className="manage-primary-btn">
-                {editingId ? 'Update Product' : 'Add Product'}
+                {editingId ? 'Update Product' : 'Add Service'}
               </button>
               {editingId ? (
                 <button type="button" className="manage-ghost-btn" onClick={resetForm}>
@@ -857,29 +909,29 @@ const ManageProducts = () => {
           <h2>Product List ({products.length})</h2>
           <div className="product-list-wrap">
             {products.map((product) => (
-              <div key={product.id} className="product-row">
-                <img src={product.imageUrl} alt={product.name} />
+              <div key={service.id} className="product-row">
+                <img src={service.imageUrl} alt={service.name} />
                 <div className="product-row-info">
-                  <h3>{product.name}</h3>
-                  <p>{product.subtitle}</p>
+                  <h3>{service.name}</h3>
+                  <p>{service.subtitle}</p>
                   <small>
-                    BDT {product.price} | {product.discount} | Rating {product.rating.toFixed(2)}
+                    BDT {service.price} | {service.discount} | Rating {service.rating.toFixed(2)}
                   </small>
                   <small>
-                    Gallery: {Array.isArray(product.galleryImages) ? product.galleryImages.length : 0} | Video:{' '}
-                    {product.videoUrl ? 'Yes' : 'No'} | GIF: {product.gifUrl ? 'Yes' : 'No'}
+                    Gallery: {Array.isArray(service.galleryImages) ? service.galleryImages.length : 0} | Video:{' '}
+                    {service.videoUrl ? 'Yes' : 'No'} | GIF: {service.gifUrl ? 'Yes' : 'No'}
                   </small>
                   <small>
-                    Variants: {Array.isArray(product.variants) ? product.variants.length : 0} | Badges:{' '}
-                    {Array.isArray(product.featureBadges) ? product.featureBadges.filter((badge) => badge.enabled !== false).length : 0} | Related:{' '}
-                    {Array.isArray(product.relatedProductIds) ? product.relatedProductIds.length : 0}
+                    Variants: {Array.isArray(service.variants) ? service.variants.length : 0} | Badges:{' '}
+                    {Array.isArray(service.featureBadges) ? service.featureBadges.filter((badge) => badge.enabled !== false).length : 0} | Related:{' '}
+                    {Array.isArray(service.relatedProductIds) ? service.relatedProductIds.length : 0}
                   </small>
                 </div>
                 <div className="product-row-actions">
                   <button type="button" onClick={() => handleEdit(product)}>
                     Edit
                   </button>
-                  <button type="button" className="danger-btn" onClick={() => handleDelete(product.id)}>
+                  <button type="button" className="danger-btn" onClick={() => handleDelete(service.id)}>
                     Delete
                   </button>
                 </div>
