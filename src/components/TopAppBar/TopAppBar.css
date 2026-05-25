@@ -72,6 +72,7 @@
   transition: all 0.3s ease;
 }
 
+.top-app-bar__nav-link.active,
 .top-app-bar__nav-link--active {
   color: var(--primary);
   text-shadow: 0 0 5px currentColor;
