@@ -443,34 +443,34 @@ const ManageProducts = () => {
   }
 
   const handleEdit = (product) => {
-    setEditingId(service.id)
+    setEditingId(product.id)
     setPrimaryImageFile(null)
     setGalleryFiles([])
     setVideoFile(null)
     setFormData({
-      name: service.name,
-      subtitle: service.subtitle,
-      category: service.category || getProductCategoryLabel(product),
-      imageUrl: service.imageUrl,
-      galleryImageUrls: Array.isArray(service.galleryImages) ? service.galleryImages.join('\n') : '',
-      videoUrl: service.videoUrl || '',
-      gifUrl: service.gifUrl || '',
-      rating: String(service.rating),
-      reviews: String(service.reviews),
-      oldPrice: String(service.oldPrice),
-      price: String(service.price),
-      discount: service.discount,
-      save: String(service.save),
-      variants: Array.isArray(service.variants) && service.variants.length > 0
-        ? service.variants.map((variant, index) => createVariantRow(variant, index))
-        : [createVariantRow({ amount: service.variantAmount || '100', unit: service.variantUnit || 'ML', price: service.price, oldPrice: service.oldPrice, save: service.save }, 0)],
-      featureBadges: Array.isArray(service.featureBadges) && service.featureBadges.length > 0
-        ? service.featureBadges.map((badge, index) => createBadgeRow(badge, index))
+      name: product.name,
+      subtitle: product.subtitle,
+      category: product.category || getProductCategoryLabel(product),
+      imageUrl: product.imageUrl,
+      galleryImageUrls: Array.isArray(product.galleryImages) ? product.galleryImages.join('\n') : '',
+      videoUrl: product.videoUrl || '',
+      gifUrl: product.gifUrl || '',
+      rating: String(product.rating ?? '4.5'),
+      reviews: String(product.reviews ?? '0'),
+      oldPrice: String(product.oldPrice ?? '0'),
+      price: String(product.price ?? '0'),
+      discount: product.discount ?? '0% OFF',
+      save: String(product.save ?? '0'),
+      variants: Array.isArray(product.variants) && product.variants.length > 0
+        ? product.variants.map((variant, index) => createVariantRow(variant, index))
+        : [createVariantRow({ amount: product.variantAmount || '100', unit: product.variantUnit || 'ML', price: product.price, oldPrice: product.oldPrice, save: product.save }, 0)],
+      featureBadges: Array.isArray(product.featureBadges) && product.featureBadges.length > 0
+        ? product.featureBadges.map((badge, index) => createBadgeRow(badge, index))
         : DEFAULT_FEATURE_BADGES.map((badge, index) => createBadgeRow(badge, index)),
-      relatedProductIds: Array.isArray(service.relatedProductIds) ? service.relatedProductIds.map(String) : [],
-      faqs: Array.isArray(service.faqs) ? service.faqs.map((faq, index) => createFaqRow(faq, index)) : [],
-      descriptionMedia: Array.isArray(service.descriptionMedia) ? service.descriptionMedia.map((m, index) => createMediaRow(m, index)) : [],
-      description: service.description || '',
+      relatedProductIds: Array.isArray(product.relatedProductIds) ? product.relatedProductIds.map(String) : [],
+      faqs: Array.isArray(product.faqs) ? product.faqs.map((faq, index) => createFaqRow(faq, index)) : [],
+      descriptionMedia: Array.isArray(product.descriptionMedia) ? product.descriptionMedia.map((m, index) => createMediaRow(m, index)) : [],
+      description: product.description || '',
     })
   }
 
@@ -883,10 +883,10 @@ const ManageProducts = () => {
               Related Products
               <select multiple value={formData.relatedProductIds} onChange={handleRelatedProductsChange} className="related-products-select">
                 {products
-                  .filter((product) => String(service.id) !== String(editingId))
-                  .map((product) => (
-                    <option key={service.id} value={String(service.id)}>
-                      {service.name}
+                  .filter((item) => String(item.id) !== String(editingId))
+                  .map((item) => (
+                    <option key={item.id} value={String(item.id)}>
+                      {item.name}
                     </option>
                   ))}
               </select>
@@ -909,29 +909,29 @@ const ManageProducts = () => {
           <h2>Product List ({products.length})</h2>
           <div className="product-list-wrap">
             {products.map((product) => (
-              <div key={service.id} className="product-row">
-                <img src={service.imageUrl} alt={service.name} />
+              <div key={product.id} className="product-row">
+                <img src={product.imageUrl} alt={product.name || 'Service'} />
                 <div className="product-row-info">
-                  <h3>{service.name}</h3>
-                  <p>{service.subtitle}</p>
+                  <h3>{product.name}</h3>
+                  <p>{product.subtitle}</p>
                   <small>
-                    BDT {service.price} | {service.discount} | Rating {service.rating.toFixed(2)}
+                    BDT {product.price} | {product.discount} | Rating {(Number(product.rating) || 0).toFixed(2)}
                   </small>
                   <small>
-                    Gallery: {Array.isArray(service.galleryImages) ? service.galleryImages.length : 0} | Video:{' '}
-                    {service.videoUrl ? 'Yes' : 'No'} | GIF: {service.gifUrl ? 'Yes' : 'No'}
+                    Gallery: {Array.isArray(product.galleryImages) ? product.galleryImages.length : 0} | Video:{' '}
+                    {product.videoUrl ? 'Yes' : 'No'} | GIF: {product.gifUrl ? 'Yes' : 'No'}
                   </small>
                   <small>
-                    Variants: {Array.isArray(service.variants) ? service.variants.length : 0} | Badges:{' '}
-                    {Array.isArray(service.featureBadges) ? service.featureBadges.filter((badge) => badge.enabled !== false).length : 0} | Related:{' '}
-                    {Array.isArray(service.relatedProductIds) ? service.relatedProductIds.length : 0}
+                    Variants: {Array.isArray(product.variants) ? product.variants.length : 0} | Badges:{' '}
+                    {Array.isArray(product.featureBadges) ? product.featureBadges.filter((badge) => badge.enabled !== false).length : 0} | Related:{' '}
+                    {Array.isArray(product.relatedProductIds) ? product.relatedProductIds.length : 0}
                   </small>
                 </div>
                 <div className="product-row-actions">
                   <button type="button" onClick={() => handleEdit(product)}>
                     Edit
                   </button>
-                  <button type="button" className="danger-btn" onClick={() => handleDelete(service.id)}>
+                  <button type="button" className="danger-btn" onClick={() => handleDelete(product.id)}>
                     Delete
                   </button>
                 </div>
