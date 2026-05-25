@@ -1,42 +1,67 @@
-import { Link } from 'react-router-dom'
-import { useProducts } from '../../context/ProductContext'
-import AdminLayout from '../../components/AdminLayout/AdminLayout'
+/**
+ * Admin Dashboard Page
+ * ====================
+ * Main dashboard displaying overview and statistics about services.
+ * Shows total services count, quick actions, and navigation to management pages.
+ * 
+ * Features:
+ *   - Display service statistics
+ *   - Quick action buttons
+ *   - Navigation to service management
+ *   - Logout functionality
+ */
+
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
+import { fetchAllServices, fetchOrders, fetchChatHistory } from '../services/api'
+import AdminLayout from '../components/AdminLayout/AdminLayout'
 import './Dashboard.css'
 
 const Dashboard = () => {
-  const { products } = useProducts()
+  const navigate = useNavigate()
+  const { user, logout } = useAuth()
+  const [stats, setStats] = useState({ services: 0, orders: 0, chats: 0 })
 
-  const totalProducts = products.length
-  const averageRating =
-    totalProducts > 0
-      ? products.reduce((sum, product) => sum + product.rating, 0) / totalProducts
-      : 0
-  const totalReviews = products.reduce((sum, product) => sum + product.reviews, 0)
-  const discountedProducts = products.filter(
-    (product) => Number(product.oldPrice) > Number(product.price) || Number(product.save) > 0,
-  ).length
+  useEffect(() => {
+    const loadStats = async () => {
+      try {
+        const servicesData = await fetchAllServices()
+        const ordersData = await fetchOrders()
+        const chatData = await fetchChatHistory()
+        setStats({
+          services: servicesData ? servicesData.length : 0,
+          orders: ordersData && ordersData.orders ? ordersData.orders.length : 0,
+          chats: chatData ? chatData.length : 0
+        })
+      } catch (err) {
+        console.error('Failed to load stats', err)
+      }
+    }
+    loadStats()
+  }, [])
+
+  const handleLogout = () => {
+    logout()
+    navigate('/admin', { replace: true })
+  }
 
   const kpiCards = [
     {
-      title: 'Total Products',
-      value: totalProducts.toLocaleString(),
+      title: 'Total Services',
+      value: stats.services.toLocaleString(),
       tone: 'primary',
     },
     {
-      title: 'Average Rating',
-      value: averageRating.toFixed(2),
-      tone: 'neutral',
-    },
-    {
-      title: 'Total Reviews',
-      value: totalReviews.toLocaleString(),
-      tone: 'neutral',
-    },
-    {
-      title: 'Discounted Items',
-      value: discountedProducts.toLocaleString(),
+      title: 'Total Orders',
+      value: stats.orders.toLocaleString(),
       tone: 'success',
     },
+    {
+      title: 'Support Chats',
+      value: stats.chats.toLocaleString(),
+      tone: 'neutral',
+    }
   ]
 
   return (
@@ -54,14 +79,17 @@ const Dashboard = () => {
               ))}
             </section>
           </div>
+          <button className="admin-logout-btn" type="button" onClick={handleLogout}>
+            Logout
+          </button>
         </section>
 
         <section className="dashboard-action-grid" aria-label="Admin workflows">
           <article className="dashboard-actions" aria-label="Admin actions">
             <h2>Catalog Management</h2>
-            <p style={{marginBottom: '1rem'}}>Add, update, or remove products in your catalog.</p>
-            <Link className="admin-primary-link" to="/admin/products">
-              Manage Products
+            <p style={{marginBottom: '1rem'}}>Add, update, or remove services in your catalog.</p>
+            <Link className="admin-primary-link" to="/admin/services">
+              Manage Services
             </Link>
           </article>
 
@@ -76,7 +104,7 @@ const Dashboard = () => {
           <article className="dashboard-actions" aria-label="Chat analytics actions">
             <h2>Agent X Analytics</h2>
             <p style={{marginBottom: '1rem'}}>Review AI assistant conversation history.</p>
-            <Link className="admin-primary-link" to="/admin/chat-history">
+            <Link className="admin-primary-link" to="/admin/chats">
               View Chat History
             </Link>
           </article>
