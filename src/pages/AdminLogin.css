@@ -1,7 +1,5 @@
 /**
- * Admin Login Styles
- * ==================
- * Styling for the admin login page with modern design
+ * Admin Login — matches client Neon Tokyo theme (global.css tokens)
  */
 
 .admin-login-container {
@@ -9,144 +7,214 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 20px;
+  padding: 1.5rem;
+  background-color: var(--background);
+  background-image:
+    linear-gradient(rgba(255, 45, 120, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 45, 120, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  position: relative;
+  isolation: isolate;
+}
+
+.admin-login-container::before,
+.admin-login-container::after {
+  content: '';
+  position: fixed;
+  width: 28rem;
+  height: 28rem;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(100px);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.admin-login-container::before {
+  top: -6rem;
+  left: -6rem;
+  background: rgba(255, 45, 120, 0.22);
+}
+
+.admin-login-container::after {
+  right: -8rem;
+  bottom: -6rem;
+  background: rgba(0, 255, 204, 0.18);
 }
 
 .login-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  padding: 40px;
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface-container);
+  border: 1px solid rgba(255, 45, 120, 0.35);
+  box-shadow:
+    0 0 24px rgba(255, 45, 120, 0.12),
+    0 16px 48px rgba(0, 0, 0, 0.4);
 }
 
 .login-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 1.75rem;
 }
 
 .login-header h1 {
-  color: #333;
-  font-size: 28px;
-  margin: 0 0 8px 0;
+  margin: 0 0 0.5rem;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .login-header p {
-  color: #666;
-  font-size: 14px;
   margin: 0;
+  font-size: 0.9rem;
+  color: var(--on-surface-variant);
 }
 
 .error-message {
-  background-color: #fee;
-  color: #c33;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-size: 14px;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
   text-align: center;
-  border: 1px solid #fcc;
+  background: var(--error-container);
+  color: var(--on-error-container);
+  border: 1px solid var(--error);
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
+  gap: 0.4rem;
 }
 
 .form-group label {
-  margin-bottom: 6px;
-  color: #333;
-  font-weight: 500;
-  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--on-surface);
 }
 
 .form-group input {
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--on-surface);
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: var(--on-surface-variant);
+  opacity: 0.7;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(0, 255, 204, 0.2);
 }
 
 .form-group input:disabled {
-  background-color: #f5f5f5;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
 .login-button {
-  padding: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
+  margin-top: 0.25rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--on-primary);
   cursor: pointer;
+  border: none;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--primary), #c91d5a);
+  box-shadow: 0 4px 20px rgba(255, 45, 120, 0.35);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .login-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 28px rgba(255, 45, 120, 0.45);
 }
 
 .login-button:disabled {
-  opacity: 0.7;
+  opacity: 0.65;
   cursor: not-allowed;
 }
 
 .demo-info {
-  background: #f5f5f5;
-  padding: 16px;
-  border-radius: 6px;
-  border-left: 4px solid #667eea;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface-container-high);
+  border: 1px solid rgba(0, 255, 204, 0.25);
+  border-left: 4px solid var(--secondary);
 }
 
 .demo-info p {
-  margin: 6px 0;
-  color: #333;
-  font-size: 13px;
+  margin: 0.4rem 0;
+  font-size: 0.875rem;
+  color: var(--on-surface);
+  line-height: 1.5;
 }
 
 .demo-info p:first-child {
   margin-top: 0;
-  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--secondary);
+  font-weight: 700;
 }
 
 .demo-info code {
-  background: white;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-family: 'Courier New', monospace;
-  color: #667eea;
+  display: inline-block;
+  margin-left: 0.25rem;
+  padding: 0.15rem 0.5rem;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--tertiary);
+  background: rgba(255, 224, 74, 0.12);
+  border: 1px solid rgba(255, 224, 74, 0.35);
+  border-radius: var(--radius-sm);
 }
 
-/* Responsive design */
+.login-back-link {
+  display: block;
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--on-surface-variant);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.login-back-link:hover {
+  color: var(--secondary);
+}
+
 @media (max-width: 600px) {
   .login-card {
-    padding: 24px;
+    padding: 1.75rem 1.25rem;
   }
 
   .login-header h1 {
-    font-size: 24px;
-  }
-
-  .demo-info {
-    font-size: 12px;
+    font-size: 1.5rem;
   }
 }
