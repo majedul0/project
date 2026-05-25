@@ -30,6 +30,10 @@ import Footer from './components/Footer/Footer'
 import MobileDrawer from './components/MobileDrawer/MobileDrawer'
 import SupernovaBackground from './animations/supernova.jsx'
 
+// Public pages
+import ServicesPage from './pages/ServicesPage'
+import BlogPage from './pages/BlogPage'
+
 // Admin components
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './Admin/Dashboard'
@@ -81,6 +85,8 @@ function App() {
         <Routes>
           {/* Public routes */}
           <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/blog" element={<BlogPage />} />
 
           {/* Admin routes */}
           <Route path="/admin" element={<AdminLogin />} />
