@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import AdminLayout from '../../components/AdminLayout/AdminLayout'
-import Toast from '../../components/Toast/Toast'
-import { API_BASE_URL } from '../../services/api'
+import AdminLayout from '../components/AdminLayout/AdminLayout'
+import { fetchBlogsAPI, createBlogAPI, updateBlogAPI, deleteBlogAPI, uploadBlogImage } from '../services/api'
 
 import './ManageBlogs.css'
 
@@ -22,11 +21,10 @@ const ManageBlogs = () => {
   const fetchBlogs = async () => {
     setLoading(true)
     try {
-      const res = await fetch(`${API_BASE_URL}/blogs`)
-      const data = await res.json()
+      const data = await fetchBlogsAPI()
       setBlogs(data)
     } catch (err) {
-      setToast({ message: 'Failed to load blogs', type: 'error' })
+      alert('Failed to load blogs')
     } finally {
       setLoading(false)
     }
@@ -53,30 +51,35 @@ const ManageBlogs = () => {
   const handleUpdateBlog = async (e) => {
     e.preventDefault()
     if (!editForm.headline.trim()) {
-      setToast({ message: 'Headline is required', type: 'error' })
+      alert('Headline is required')
       return
     }
 
     setSubmitting(true)
     try {
-      const fd = new FormData()
-      fd.append('headline', editForm.headline)
-      fd.append('subline', editForm.subline)
-      fd.append('body', editForm.body)
-      fd.append('tags', editForm.tags)
-      fd.append('author', editForm.author)
-      if (editImageFile) fd.append('image', editImageFile)
+      let imageUrl = null
+      if (editImageFile) {
+        imageUrl = await uploadBlogImage(editImageFile)
+      }
 
-      const res = await fetch(`${API_BASE_URL}/blogs/${editingBlog}`, { method: 'PUT', body: fd })
-      if (!res.ok) throw new Error('Update failed')
+      const updateData = {
+        headline: editForm.headline,
+        subline: editForm.subline,
+        body: editForm.body,
+        tags: editForm.tags.split(',').map(t => t.trim()),
+        author: editForm.author,
+      }
+      if (imageUrl) updateData.imageUrl = imageUrl
+
+      await updateBlogAPI(editingBlog, updateData)
 
       await fetchBlogs()
       setEditingBlog(null)
       setEditForm({})
       setEditImageFile(null)
-      setToast({ message: 'Blog updated successfully!', type: 'success' })
+      alert('Blog updated successfully!')
     } catch (err) {
-      setToast({ message: err.message || 'Failed to update blog', type: 'error' })
+      alert(err.message || 'Failed to update blog')
     } finally {
       setSubmitting(false)
     }
@@ -86,41 +89,45 @@ const ManageBlogs = () => {
     if (!window.confirm('Are you sure you want to delete this blog?')) return
 
     try {
-      const res = await fetch(`${API_BASE_URL}/blogs/${blogId}`, { method: 'DELETE' })
-      if (!res.ok) throw new Error('Delete failed')
+      await deleteBlogAPI(blogId)
 
       await fetchBlogs()
-      setToast({ message: 'Blog deleted successfully!', type: 'success' })
+      alert('Blog deleted successfully!')
     } catch (err) {
-      setToast({ message: err.message || 'Failed to delete blog', type: 'error' })
+      alert(err.message || 'Failed to delete blog')
     }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!form.headline.trim()) {
-      setToast({ message: 'Headline is required', type: 'error' })
+      alert('Headline is required')
       return
     }
     setSubmitting(true)
 
-    const fd = new FormData()
-    fd.append('headline', form.headline)
-    fd.append('subline', form.subline)
-    fd.append('body', form.body)
-    fd.append('tags', form.tags)
-    fd.append('author', form.author)
-    if (imageFile) fd.append('image', imageFile)
-
     try {
-      const res = await fetch(`${API_BASE_URL}/blogs`, { method: 'POST', body: fd })
-      if (!res.ok) throw new Error('Upload failed')
+      let imageUrl = null
+      if (imageFile) {
+        imageUrl = await uploadBlogImage(imageFile)
+      }
+
+      const createData = {
+        headline: form.headline,
+        subline: form.subline,
+        body: form.body,
+        tags: form.tags.split(',').map(t => t.trim()),
+        author: form.author,
+        imageUrl: imageUrl
+      }
+
+      await createBlogAPI(createData)
       await fetchBlogs()
       setForm({ headline: '', subline: '', body: '', tags: '', author: '' })
       setImageFile(null)
-      setToast({ message: 'Blog created successfully!', type: 'success' })
+      alert('Blog created successfully!')
     } catch (err) {
-      setToast({ message: err.message || 'Failed to create blog', type: 'error' })
+      alert(err.message || 'Failed to create blog')
     } finally {
       setSubmitting(false)
     }
