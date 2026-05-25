@@ -1,0 +1,349 @@
+/**
+ * Admin panel theme — matches client (Neon Tokyo) design tokens from global.css
+ */
+
+/* ---- Login page (outside .admin-layout) ---- */
+.admin-login-container {
+  color: var(--on-surface);
+}
+
+/* ---- Global admin text contrast ---- */
+.admin-layout,
+.admin-layout .admin-dashboard-page,
+.admin-layout .manage-blogs,
+.admin-layout .manage-products-page,
+.admin-layout .order-list-page,
+.admin-layout .chat-history-page {
+  color: var(--on-surface);
+}
+
+.admin-layout h1,
+.admin-layout h2,
+.admin-layout h3,
+.admin-layout h4,
+.admin-layout label,
+.admin-layout th {
+  color: var(--on-surface) !important;
+}
+
+.admin-layout p,
+.admin-layout small,
+.admin-layout span,
+.admin-layout td,
+.admin-layout li {
+  color: var(--on-surface-variant);
+}
+
+.admin-layout strong {
+  color: var(--on-surface);
+}
+
+.admin-layout code {
+  color: var(--tertiary) !important;
+  background: var(--surface-container-high) !important;
+  border: 1px solid rgba(255, 224, 74, 0.3);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+}
+
+.admin-layout input,
+.admin-layout textarea,
+.admin-layout select {
+  color: var(--on-surface) !important;
+  background: var(--surface-container-high) !important;
+  border-color: var(--outline-variant) !important;
+}
+
+.admin-layout input::placeholder,
+.admin-layout textarea::placeholder {
+  color: var(--on-surface-variant) !important;
+  opacity: 0.75;
+}
+
+.admin-layout {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--on-surface);
+}
+
+.admin-header {
+  background: rgba(15, 15, 26, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 45, 120, 0.35);
+  box-shadow: 0 0 15px rgba(255, 45, 120, 0.15);
+  color: var(--on-surface);
+}
+
+.admin-logo {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  color: var(--on-surface) !important;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.admin-sidebar {
+  background: var(--surface-container);
+  border-right: 1px solid rgba(255, 45, 120, 0.2);
+  box-shadow: none;
+}
+
+.nav-item {
+  color: var(--on-surface-variant);
+  border-left-color: transparent;
+}
+
+.nav-item:hover {
+  background: rgba(255, 45, 120, 0.08);
+  color: var(--secondary);
+  border-left-color: var(--secondary);
+}
+
+.nav-item.active {
+  background: rgba(0, 255, 204, 0.08);
+  color: var(--secondary);
+  border-left-color: var(--primary);
+}
+
+.nav-divider {
+  background: rgba(255, 45, 120, 0.2);
+}
+
+.nav-section-title {
+  color: var(--on-surface-variant);
+}
+
+.admin-main {
+  background: transparent;
+}
+
+.hamburger span {
+  background: var(--primary);
+}
+
+/* Manage services page */
+.manage-products-page {
+  color: var(--on-surface);
+}
+
+.manage-header p,
+.manage-kicker {
+  color: var(--on-surface-variant);
+}
+
+.manage-header h1 {
+  color: var(--on-surface);
+}
+
+.product-form-card,
+.product-list-card {
+  background: var(--surface-container);
+  border: 1px solid rgba(255, 45, 120, 0.25);
+  color: var(--on-surface);
+}
+
+.product-form-card h2,
+.product-list-card h2,
+.product-form-section-head h3 {
+  color: var(--on-surface);
+}
+
+.product-form-grid label {
+  color: var(--on-surface-variant);
+}
+
+.product-form-grid input,
+.product-form-grid textarea,
+.product-form-grid select,
+.related-products-select {
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  color: var(--on-surface);
+  border-radius: var(--radius-lg);
+}
+
+.product-form-grid input:focus,
+.product-form-grid textarea:focus,
+.product-form-grid select:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(0, 255, 204, 0.15);
+}
+
+.manage-primary-btn {
+  background: linear-gradient(135deg, var(--primary), #c91d5a);
+  color: var(--on-primary);
+  border: none;
+}
+
+.manage-ghost-btn {
+  background: transparent;
+  border: 1px solid var(--outline);
+  color: var(--on-surface-variant);
+}
+
+.manage-ghost-btn:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.product-row {
+  border-color: rgba(255, 45, 120, 0.2);
+  background: var(--surface-container-high);
+}
+
+.product-row-info h3 {
+  color: var(--on-surface);
+}
+
+.product-row-info p,
+.product-row-info small {
+  color: var(--on-surface-variant);
+}
+
+.danger-btn {
+  background: var(--error-container);
+  color: var(--on-error-container);
+  border: 1px solid var(--error);
+}
+
+/* Manage blogs */
+.manage-blogs {
+  background: transparent;
+  color: var(--on-surface);
+  min-height: auto;
+}
+
+.manage-blogs-header h2 {
+  color: var(--on-surface);
+  font-family: 'Sora', sans-serif;
+}
+
+.manage-blogs-header p {
+  color: var(--on-surface-variant);
+}
+
+.manage-blogs-form-section,
+.manage-blogs-list-section,
+.blog-card {
+  background: var(--surface-container);
+  border: 1px solid rgba(255, 45, 120, 0.25);
+  color: var(--on-surface);
+}
+
+.manage-blogs-form-section input,
+.manage-blogs-form-section textarea,
+.manage-blogs-form-section select {
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  color: var(--on-surface);
+}
+
+.manage-blogs-submit-btn {
+  background: linear-gradient(135deg, var(--primary), #c91d5a);
+  color: var(--on-primary);
+}
+
+/* Dashboard */
+.admin-dashboard-page {
+  color: var(--on-surface);
+}
+
+.admin-dashboard-hero,
+.dashboard-stat-card,
+.dashboard-panel {
+  background: var(--surface-container);
+  border: 1px solid rgba(255, 45, 120, 0.25);
+  color: var(--on-surface);
+}
+
+.dashboard-hero-content h1,
+.dashboard-stat-card h3 {
+  color: var(--on-surface);
+}
+
+.dashboard-stat-card p,
+.dashboard-panel p {
+  color: var(--on-surface-variant);
+}
+
+/* Override legacy light-theme blocks in page CSS */
+.admin-layout .admin-dashboard-hero,
+.admin-layout .dashboard-stat-card,
+.admin-layout .dashboard-panel,
+.admin-layout .dashboard-recent-panel,
+.admin-layout .product-form-section,
+.admin-layout .manage-blogs-form-section,
+.admin-layout .manage-blogs-list-section,
+.admin-layout .blog-card,
+.admin-layout .blog-list-item,
+.admin-layout .order-card,
+.admin-layout .order-table-wrap,
+.admin-layout .chat-session-card,
+.admin-layout .chat-message-card {
+  background: var(--surface-container) !important;
+  border-color: rgba(255, 45, 120, 0.25) !important;
+  color: var(--on-surface) !important;
+}
+
+.admin-layout .product-form-section {
+  background: var(--surface-container-high) !important;
+}
+
+.admin-layout .manage-ghost-btn,
+.admin-layout .product-row-actions button:not(.danger-btn) {
+  background: transparent !important;
+  color: var(--on-surface-variant) !important;
+  border: 1px solid var(--outline) !important;
+}
+
+.admin-layout .manage-ghost-btn:hover,
+.admin-layout .product-row-actions button:not(.danger-btn):hover {
+  color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+}
+
+.admin-layout .manage-link-btn,
+.admin-layout .manage-primary-btn,
+.admin-layout .manage-blogs-submit-btn,
+.admin-layout .order-status-btn {
+  background: linear-gradient(135deg, var(--primary), #c91d5a) !important;
+  color: var(--on-primary) !important;
+}
+
+.admin-layout .badge-enabled-toggle,
+.admin-layout .variant-row label,
+.admin-layout .form-label,
+.admin-layout .manage-blogs-form-section label {
+  color: var(--on-surface-variant) !important;
+}
+
+.admin-layout .blog-card h3,
+.admin-layout .blog-list-item h4,
+.admin-layout .order-card h3,
+.admin-layout .dashboard-stat-card .stat-value {
+  color: var(--on-surface) !important;
+}
+
+.admin-layout .media-row,
+.admin-layout .faq-row,
+.admin-layout .variant-row,
+.admin-layout .badge-row {
+  border-bottom-color: rgba(255, 45, 120, 0.2) !important;
+}
+
+.admin-layout table {
+  background: var(--surface-container);
+}
+
+.admin-layout table th {
+  background: var(--surface-container-high);
+  color: var(--on-surface) !important;
+}
+
+.admin-layout table td {
+  color: var(--on-surface-variant) !important;
+  border-color: rgba(255, 45, 120, 0.15) !important;
+}
