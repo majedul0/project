@@ -17,9 +17,9 @@ const Footer = ({ withSideNav = false }) => {
         </div>
         
         <div className="footer__links footer__fade footer__fade--2">
-          <a href="#" className="footer__link">Terms</a>
-          <a href="#" className="footer__link">Privacy</a>
-          <a href="#" className="footer__link">Support</a>
+          <a href="/services" className="footer__link">Services</a>
+          <a href="/blog" className="footer__link">Blog</a>
+          <a href="/admin" className="footer__link">Admin</a>
         </div>
         
         <div className="footer__copyright footer__fade footer__fade--3">
