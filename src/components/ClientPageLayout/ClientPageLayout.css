@@ -1,0 +1,102 @@
+.client-page__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* Readable panels over animated background */
+.client-page__breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+  color: var(--on-surface);
+  background: rgba(15, 15, 26, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 45, 120, 0.22);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.client-page__breadcrumb a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.client-page__breadcrumb a:hover {
+  text-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
+}
+
+.client-page__breadcrumb > span:last-child {
+  color: var(--on-surface-variant);
+}
+
+.client-page__breadcrumb .material-symbols-outlined {
+  font-size: 1rem;
+  color: var(--on-surface-variant);
+}
+
+.client-page__header {
+  margin-bottom: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(15, 15, 26, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 45, 120, 0.28);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.client-page__title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0 0 0.75rem;
+}
+
+.client-page__subtitle {
+  margin: 0;
+  padding: 0.65rem 0.85rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--on-surface);
+  background: rgba(20, 20, 34, 0.95);
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--secondary);
+}
+
+/* Empty / loading / error messages */
+.client-page__status {
+  display: inline-block;
+  max-width: 36rem;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1.25rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--on-surface);
+  background: rgba(15, 15, 26, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 45, 120, 0.25);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.client-page__status-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem 3rem;
+}
+
+.client-page__status--error {
+  color: var(--on-error-container);
+  background: rgba(61, 15, 15, 0.92);
+  border-color: var(--error);
+}
