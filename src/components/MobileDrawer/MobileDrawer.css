@@ -75,6 +75,7 @@
   color: var(--secondary);
 }
 
+.mobile-drawer__nav-item.active,
 .mobile-drawer__nav-item--active {
   background: rgba(255, 45, 120, 0.2);
   color: var(--primary);
