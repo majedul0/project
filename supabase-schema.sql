@@ -17,8 +17,12 @@ create table public.services (
     updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
--- Note: To allow public viewing of services but only admin updates, you would set RLS here.
--- For now, if RLS is disabled, the client will be able to perform these CRUD operations.
+-- Extended product payload for the admin services UI (variants, badges, gallery, etc.)
+alter table public.services
+  add column if not exists product_data jsonb default '{}'::jsonb;
+
+-- After creating tables/buckets, run supabase-fix-rls.sql in the SQL Editor so
+-- storage uploads and admin CRUD are allowed (fixes RLS policy errors).
 
 -- 2. Blogs Table
 create table public.blogs (
