@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { fetchOrders, updateOrderStatus } from '../../services/api'
-import AdminLayout from '../../components/AdminLayout/AdminLayout'
+import { fetchOrders, updateOrderStatus } from '../services/api'
+import AdminLayout from '../components/AdminLayout/AdminLayout'
 import './OrderList.css'
 
 const OrderList = () => {
